@@ -1,7 +1,7 @@
 from typing import List
 
 
-class BaseSearcher:
+class BaseScraper:
 
     def __init__(self) -> None:
         pass
