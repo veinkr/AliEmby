@@ -8,8 +8,6 @@ import ruamel.yaml
 SPLIT_CHARS = r"\.|\s+|\(|\)|\[|]|-|\+|【|】|/|～|;|&|\||#|_|「|」|（|）|~"
 # 默认User-Agent
 DEFAULT_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36"
-# 收藏了的媒体的目录名，名字可以改，在Emby中点击红星则会自动将电影转移到此分类下，需要在Emby Webhook中配置用户行为通知
-RMT_FAVTYPE = '精选'
 # 支持的媒体文件后缀格式
 RMT_MEDIAEXT = ['.mp4', '.mkv', '.ts', '.iso',
                 '.rmvb', '.avi', '.mov', '.mpeg',
@@ -21,46 +19,20 @@ RMT_SUBEXT = ['.srt', '.ass', '.ssa']
 ANIME_GENREIDS = ['16']
 # 默认过滤的文件大小，150M
 RMT_MIN_FILESIZE = 150 * 1024 * 1024
-# 删种检查时间间隔
-AUTO_REMOVE_TORRENTS_INTERVAL = 1800
-# 下载文件转移检查时间间隔，
-PT_TRANSFER_INTERVAL = 300
 # TMDB信息缓存定时保存时间
 METAINFO_SAVE_INTERVAL = 600
-# SYNC目录同步聚合转移时间
-SYNC_TRANSFER_INTERVAL = 60
-# RSS队列中处理时间间隔
-RSS_CHECK_INTERVAL = 300
-# 站点流量数据刷新时间间隔（小时）
-REFRESH_PT_DATA_INTERVAL = 6
-# 刷新订阅TMDB数据的时间间隔（小时）
-RSS_REFRESH_TMDB_INTERVAL = 6
-# 刷流删除的检查时间间隔
-BRUSH_REMOVE_TORRENTS_INTERVAL = 300
-# 定时清除未识别的缓存时间间隔（小时）
-META_DELETE_UNKNOWN_INTERVAL = 12
-# 定时刷新壁纸的间隔（小时）
-REFRESH_WALLPAPER_INTERVAL = 1
 # fanart的api，用于拉取封面图片
 FANART_MOVIE_API_URL = 'https://webservice.fanart.tv/v3/movies/%s?api_key=d2d31f9ecabea050fc7d68aa3146015f'
 FANART_TV_API_URL = 'https://webservice.fanart.tv/v3/tv/%s?api_key=d2d31f9ecabea050fc7d68aa3146015f'
 # 默认背景图地址
 DEFAULT_TMDB_IMAGE = 'https://s3.bmp.ovh/imgs/2022/07/10/77ef9500c851935b.webp'
-# 默认微信消息代理服务器地址
-DEFAULT_WECHAT_PROXY = 'https://wechat.nastool.cn'
-# 默认OCR识别服务地址
-DEFAULT_OCR_SERVER = 'https://nastool.cn'
 # 默认TMDB代理服务地址
 DEFAULT_TMDB_PROXY = 'https://tmdb.nastool.cn'
-# 默认CookieCloud服务地址
-DEFAULT_COOKIECLOUD_SERVER = 'http://nastool.cn:8088'
 # TMDB图片地址
 TMDB_IMAGE_W500_URL = 'https://image.tmdb.org/t/p/w500%s'
 TMDB_IMAGE_ORIGINAL_URL = 'https://image.tmdb.org/t/p/original%s'
 TMDB_IMAGE_FACE_URL = 'https://image.tmdb.org/t/p/h632%s'
 TMDB_PEOPLE_PROFILE_URL = 'https://www.themoviedb.org/person/%s'
-# 添加下载时增加的标签，开始只监控NASTool添加的下载时有效
-PT_TAG = "NASTOOL"
 # 电影默认命名格式
 DEFAULT_MOVIE_FORMAT = '{title} ({year})/{title} ({year})-{part} - {videoFormat}'
 # 电视剧默认命名格式
@@ -80,12 +52,6 @@ WEBDRIVER_PATH = {
     "Docker": "/usr/lib/chromium/chromedriver",
     "Synology": "/var/packages/NASTool/target/bin/chromedriver"
 }
-
-# Xvfb虚拟显示路程
-XVFB_PATH = [
-    "/usr/bin/Xvfb",
-    "/usr/local/bin/Xvfb"
-]
 
 # 线程锁
 lock = Lock()
@@ -148,12 +114,6 @@ class Config(object):
         if not node:
             return self._config
         return self._config.get(node, {})
-
-    def save_config(self, new_cfg):
-        self._config = new_cfg
-        with open(self._config_path, mode='w', encoding='utf-8') as sf:
-            yaml = ruamel.yaml.YAML()
-            return yaml.dump(new_cfg, sf)
 
     def get_config_path(self):
         return os.path.dirname(self._config_path)

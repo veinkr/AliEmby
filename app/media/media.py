@@ -770,9 +770,6 @@ class Media:
         # 遍历每个文件，看得出来的名称是不是不一样，不一样的先搜索媒体信息
         for file_path in file_list:
             try:
-                if not os.path.exists(file_path):
-                    log.warning("【Meta】%s 不存在" % file_path)
-                    continue
                 # 解析媒体名称
                 # 先用自己的名称
                 file_name = os.path.basename(file_path)
