@@ -1,7 +1,7 @@
 import os
 import re
 
-from app.config.config import RMT_MEDIAEXT
+from config.config import RMT_MEDIAEXT
 from app.media.meta._base import MetaBase
 from app.media.meta.release_groups import ReleaseGroupsMatcher
 from app.utils import StringUtils

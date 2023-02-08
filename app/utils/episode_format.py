@@ -2,7 +2,7 @@ import re
 
 import parse
 
-from app.config.config import SPLIT_CHARS
+from config.config import SPLIT_CHARS
 
 
 class EpisodeFormat(object):

@@ -4,7 +4,7 @@ import shutil
 
 import ruamel.yaml
 
-from app.config.config import Config
+from config.config import Config
 from app.utils import ExceptionUtils
 from app.utils.commons import singleton
 

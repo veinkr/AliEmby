@@ -2,7 +2,7 @@ import requests
 import urllib3
 from urllib3.exceptions import InsecureRequestWarning
 
-from app.config.config import Config
+from config.config import Config
 
 urllib3.disable_warnings(InsecureRequestWarning)
 

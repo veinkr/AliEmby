@@ -1,6 +1,6 @@
 import re
 
-from app.config.config import Config
+from config.config import Config
 
 
 class ReleaseGroupsMatcher(object):

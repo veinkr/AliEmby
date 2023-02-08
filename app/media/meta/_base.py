@@ -2,7 +2,7 @@ import re
 
 import cn2an
 
-from app.config.config import ANIME_GENREIDS, DEFAULT_TMDB_IMAGE, TMDB_IMAGE_W500_URL
+from config.config import ANIME_GENREIDS, DEFAULT_TMDB_IMAGE, TMDB_IMAGE_W500_URL
 from app.media.category import Category
 from app.media.fanart import Fanart
 from app.utils import StringUtils, ExceptionUtils

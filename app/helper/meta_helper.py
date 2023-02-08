@@ -4,7 +4,6 @@ import random
 import time
 from threading import RLock
 
-from app.config.config import Config
 from app.utils import ExceptionUtils
 from app.utils.commons import singleton
 
@@ -30,14 +29,10 @@ class MetaHelper(object):
     _tmdb_cache_expire = False
 
     def __init__(self):
-        self.init_config()
-
-    def init_config(self):
-        laboratory = Config().get_config('laboratory')
-        if laboratory:
-            self._tmdb_cache_expire = laboratory.get("tmdb_cache_expire")
-        self._meta_path = os.path.join(Config().get_config_path(), 'tmdb.dat')
+        self._tmdb_cache_expire = True
+        self._meta_path = os.path.join(os.path.dirname(__file__), 'tmdb.dat')
         self._meta_data = self.__load_meta_data(self._meta_path)
+        
 
     def get_meta_data_by_key(self, key):
         """

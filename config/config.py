@@ -52,6 +52,17 @@ WEBDRIVER_PATH = {
     "Docker": "/usr/lib/chromium/chromedriver",
     "Synology": "/var/packages/NASTool/target/bin/chromedriver"
 }
+_config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
+with open(_config_path, mode='r', encoding='utf-8') as cf:
+    try:
+        # 读取配置
+        print("正在加载配置：%s" % _config_path)
+        _config = ruamel.yaml.YAML().load(cf)
+    except Exception as e:
+        print("【Config】配置文件 config.yaml 格式出现严重错误！请检查：%s" % str(e))
+        _config = {}
+from dotmap import DotMap
+config = DotMap(_config)
 
 # 线程锁
 lock = Lock()
@@ -137,3 +148,7 @@ class Config(object):
     @staticmethod
     def get_timezone():
         return os.environ.get('TZ')
+
+
+if __name__ == '__main__':
+    Config()

@@ -1,6 +1,6 @@
 from functools import lru_cache
 
-from app.config.config import Config, FANART_MOVIE_API_URL, FANART_TV_API_URL
+from config.config import Config, FANART_MOVIE_API_URL, FANART_TV_API_URL
 from app.utils import RequestUtils, ExceptionUtils
 from app.utils.types import MediaType
 
@@ -22,13 +22,9 @@ class Fanart:
                        'seasonthumb',
                        'tvposter',
                        'hdclearart']
-    _images = {}
 
     def __init__(self):
-        self.init_config()
-
-    def init_config(self):
-        self._images = {}
+        self._images = {}        
 
     def __get_fanart_images(self, media_type, queryid):
         if not media_type or not queryid:

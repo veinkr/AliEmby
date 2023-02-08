@@ -4,7 +4,7 @@ import platform
 import shutil
 import subprocess
 
-from app.config.config import WEBDRIVER_PATH
+from config.config import WEBDRIVER_PATH
 from app.utils.exception_utils import ExceptionUtils
 from app.utils.path_utils import PathUtils
 from app.utils.types import OsType
